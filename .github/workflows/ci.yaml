@@ -29,7 +29,7 @@ jobs:
 
       # Optional test step if you have any tests for your app
       - name: Run tests
-        run: docker exec project_flask_1 pytest  # Run tests inside the Flask container
+        run: docker exec <project_flask_1> pytest  # Replace <container_name> with the actual container name
 
       # Optional step to push the image to Docker Hub (if you have an account)
       # - name: Log in to Docker Hub
@@ -37,3 +37,6 @@ jobs:
       #
       # - name: Push image to Docker Hub
       #   run: docker push your_dockerhub_username/myapp:v1  # Uncomment this if you want to push the image
+
+
+    
