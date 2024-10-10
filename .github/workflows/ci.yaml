@@ -12,19 +12,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.1
-            
 
-      - name: Docker Setup Buildx
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.7.1
-            
-
-      - name: Build Docker image
-        run: docker-compose build  # Build the images defined in the docker-compose.yaml
 
       - name: Install Docker Compose
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose  # Install Docker Compose
+
+      - name: Build Docker images
+        run: docker-compose build  # Build the images defined in the docker-compose.yaml
 
       - name: Run Docker Compose
         run: docker-compose up --build -d  # Build the images and start the services in detached mode
@@ -39,4 +37,3 @@ jobs:
       #
       # - name: Push image to Docker Hub
       #   run: docker push your_dockerhub_username/myapp:v1  # Uncomment this if you want to push the image
-
