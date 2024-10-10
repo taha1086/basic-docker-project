@@ -1,0 +1,22 @@
+networks: 
+ my-network:
+   driver: bridge
+
+services:
+  flask:
+    image: myapp:v1 
+    ports:
+      - "80:80"
+    networks:
+     -  my-network
+
+
+  redis: 
+   image: redis:alpine
+   ports:
+     - "6379:6379"
+   volumes:
+    - ./flassk:/app
+   networks:
+    -  my-network
+
