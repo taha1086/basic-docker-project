@@ -1,23 +1,34 @@
-name: CI Pipeline
+name: CI Pipeline for Flask App with Redis
 
 on:
   push:
     branches:
-      - main  # Make sure you're working on this branch
+      - main  # Trigger the workflow on pushes to the 'main' branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v4.2.1
+            
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
+    - name: Docker Setup Buildx
+      uses: docker/setup-buildx-action@v3.7.1
+            
+
 
     - name: Build Docker image
-      run: docker build . -t myapp:latest
+      run: docker build . -t your_dockerhub_username/myapp:latest
 
-    - name: Run Tests
-      run: docker run myapp:latest pytest
+    - name: Run Docker Compose
+      run: docker-compose up -d  # Use docker-compose.yaml to start Redis and Flask services
+
+    # Optional test step if you have any tests for your app
+    - name: Run tests
+      run: docker exec <your_flask_container_name> pytest  # Run tests inside the Flask container
+
+    - name: Push image to Docker Hub
+      run: docker push your_dockerhub_username/myapp:latest  # Push the built image to Docker Hub
+
