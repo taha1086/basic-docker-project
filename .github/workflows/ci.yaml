@@ -3,7 +3,7 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - main
+      - main  # Make sure you're working on this branch
 
 jobs:
   build:
@@ -21,4 +21,3 @@ jobs:
 
     - name: Run Tests
       run: docker run myapp:latest pytest
-
