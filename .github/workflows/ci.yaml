@@ -16,14 +16,18 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3.7.1  # Use the latest stable version
 
+    - name: Install Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install docker-compose -y  # Install Docker Compose
+
     - name: Build and Run Docker Compose
       run: |
         docker-compose up --build -d  # Build the images and start the services in detached mode
 
     - name: Run Tests
       run: |
-        docker exec <flask_container_name> pytest  # Replace <flask_container_name> with the name of your Flask service/container
-        # Make sure to specify the correct container name
+        docker exec <project_flask_1> pytest  # Replace <flask_container_name> with the name of your Flask service/container
 
     - name: Stop and Remove Containers
       run: |
