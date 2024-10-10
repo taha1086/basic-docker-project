@@ -25,7 +25,7 @@ jobs:
         run: docker-compose build  # Build the images defined in the docker-compose.yaml
 
       - name: Run Docker Compose
-        run: docker-compose up --build -d  # Build the images and start the services in detached mode
+        run: docker-compose up -d  # Start the services in detached mode
 
       # Optional test step if you have any tests for your app
       - name: Run tests
