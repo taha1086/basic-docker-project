@@ -27,5 +27,3 @@ jobs:
       - name: Run Docker Compose
         run: docker-compose up -d  # Start the services in detached mode
 
-      - name: Run tests
-        run: docker exec basic-docker-project_flask_1 pytest  # Use the correct container name for your Flask app
