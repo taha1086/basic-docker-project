@@ -22,7 +22,10 @@ jobs:
           sudo apt-get install -y docker-compose  # Install Docker Compose
 
       - name: Build Docker images
-        run: docker-compose build  # Build the images defined in the docker-compose.yaml
+        run: docker-compose build  # Build all images defined in the docker-compose.yaml
+
+      - name: List Docker images
+        run: docker images  # List the Docker images to verify that myapp:v1 exists
 
       - name: Run Docker Compose
         run: docker-compose up -d  # Start the services in detached mode
@@ -30,13 +33,3 @@ jobs:
       # Optional test step if you have any tests for your app
       - name: Run tests
         run: docker exec project_flask_1 pytest  # Use the correct container name for your Flask app
-
-      # Optional step to push the image to Docker Hub (if you have an account)
-      # Uncomment if you decide to use Docker Hub
-      # - name: Log in to Docker Hub
-      #   run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-      #
-      # - name: Push image to Docker Hub
-      #   run: docker push your_dockerhub_username/myapp:v1  # This assumes you want to push `myapp:v1` to Docker Hub
-
-    
