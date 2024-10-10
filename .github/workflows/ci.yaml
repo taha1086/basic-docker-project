@@ -27,6 +27,6 @@ jobs:
 
     # Optional test step if you have any tests for your app
     - name: Run tests
-      run: docker exec <your_flask_container_name> pytest  # Run tests inside the Flask container
+      run: docker exec <app.py> pytest  # Run tests inside the Flask container
 
 
